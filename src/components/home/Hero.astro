@@ -24,14 +24,15 @@ const t = useTranslations(lang);
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
     <div class="max-w-2xl">
       <h1
-        class="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-offwhite leading-tight hero-title opacity-0"
+        class="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-offwhite leading-tight hero-title"
+        style="opacity: 0;"
       >
         {t('hero.title')}
       </h1>
-      <p class="mt-6 text-lg md:text-xl text-offwhite/80 leading-relaxed hero-subtitle opacity-0">
+      <p class="mt-6 text-lg md:text-xl text-offwhite/80 leading-relaxed hero-subtitle" style="opacity: 0;">
         {t('hero.subtitle')}
       </p>
-      <div class="mt-8 flex flex-col sm:flex-row gap-4 hero-buttons opacity-0">
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 hero-buttons" style="opacity: 0;">
         <Button variant="primary" size="lg" href={lang === 'en' ? '/en/contact' : '/kontak'}>
           {t('hero.cta.primary')}
         </Button>
@@ -43,7 +44,7 @@ const t = useTranslations(lang);
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 hero-scroll opacity-0">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 hero-scroll" style="opacity: 0;">
     <span class="text-offwhite/60 text-sm font-body">{t('hero.scroll')}</span>
     <div class="w-6 h-10 rounded-full border-2 border-offwhite/40 flex justify-center pt-2">
       <div class="w-1.5 h-1.5 bg-offwhite/80 rounded-full animate-bounce"></div>
@@ -55,24 +56,35 @@ const t = useTranslations(lang);
   import { gsap } from 'gsap';
 
   function initHeroAnimation() {
+    const elements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-buttons, .hero-scroll');
+    if (!elements.length) return;
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.hero-title, .hero-subtitle, .hero-buttons, .hero-scroll').forEach(el => {
+      elements.forEach(el => {
         (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'none';
       });
       return;
     }
 
+    // Set initial states FIRST
+    gsap.set('.hero-title', { y: 40, opacity: 0 });
+    gsap.set('.hero-subtitle', { y: 30, opacity: 0 });
+    gsap.set('.hero-buttons', { y: 20, opacity: 0 });
+    gsap.set('.hero-scroll', { opacity: 0 });
+
+    // Then animate
     const tl = gsap.timeline({ delay: 0.3 });
     tl.to('.hero-title', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
       .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
       .to('.hero-buttons', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
       .to('.hero-scroll', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2');
-
-    // Set initial states
-    gsap.set('.hero-title', { y: 40 });
-    gsap.set('.hero-subtitle', { y: 30 });
-    gsap.set('.hero-buttons', { y: 20 });
   }
 
-  initHeroAnimation();
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroAnimation);
+  } else {
+    initHeroAnimation();
+  }
 </script>

@@ -36,7 +36,7 @@ function isActive(href: string): boolean {
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <!-- Logo -->
-      <a href={prefix || '/'} class="font-heading text-2xl text-primary">
+      <a href={prefix || '/'} class="font-heading text-2xl text-offwhite nav-logo transition-colors duration-300">
         Mitra Ternak
       </a>
 
@@ -46,10 +46,10 @@ function isActive(href: string): boolean {
           <a
             href={link.href}
             class:list={[
-              'font-body text-sm font-medium transition-colors hover:text-primary',
+              'nav-link font-body text-sm font-medium transition-colors hover:text-warm',
               isActive(link.href)
-                ? 'text-primary border-b-2 border-primary pb-1'
-                : 'text-secondary',
+                ? 'text-warm border-b-2 border-warm pb-1'
+                : 'text-offwhite/80',
             ]}
           >
             {link.label}
@@ -71,8 +71,8 @@ function isActive(href: string): boolean {
         class="flex items-center justify-center lg:hidden"
         aria-label="Toggle menu"
       >
-        <Menu id="menu-icon-open" class="h-6 w-6 text-secondary" />
-        <X id="menu-icon-close" class="hidden h-6 w-6 text-secondary" />
+        <Menu id="menu-icon-open" class="h-6 w-6 text-offwhite" />
+        <X id="menu-icon-close" class="hidden h-6 w-6 text-offwhite" />
       </button>
     </div>
   </div>
@@ -118,13 +118,35 @@ function isActive(href: string): boolean {
   const menuIconOpen = document.getElementById('menu-icon-open');
   const menuIconClose = document.getElementById('menu-icon-close');
 
+  const navLinks = navbar?.querySelectorAll('.nav-link');
+  const navLogo = navbar?.querySelector('.nav-logo');
+
   // Scroll behavior: transparent -> blurred bg
   function handleScroll() {
     if (!navbar) return;
-    if (window.scrollY > 50) {
+    const scrolled = window.scrollY > 50;
+    if (scrolled) {
       navbar.classList.add('backdrop-blur-md', 'bg-offwhite/90', 'shadow-sm');
+      navbar.classList.add('nav-scrolled');
+      // Switch to dark text
+      navLinks?.forEach(link => {
+        link.classList.remove('text-offwhite/80');
+        if (!link.classList.contains('text-warm')) {
+          link.classList.add('text-secondary');
+        }
+      });
+      navLogo?.classList.remove('text-offwhite');
     } else {
       navbar.classList.remove('backdrop-blur-md', 'bg-offwhite/90', 'shadow-sm');
+      navbar.classList.remove('nav-scrolled');
+      // Switch to light text
+      navLinks?.forEach(link => {
+        link.classList.remove('text-secondary');
+        if (!link.classList.contains('text-warm')) {
+          link.classList.add('text-offwhite/80');
+        }
+      });
+      navLogo?.classList.add('text-offwhite');
     }
   }
 
