@@ -37,6 +37,78 @@ const {
       image={image}
       locale={lang}
     />
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.mitraternak.com/#organization",
+          "name": "PT Mitra Ternak Berkelanjutan",
+          "alternateName": "Mitra Ternak",
+          "url": "https://www.mitraternak.com",
+          "logo": "https://www.mitraternak.com/images/logo/header.webp",
+          "description": "Perusahaan agribisnis peternakan domba berkelanjutan di Tuban, Jawa Timur. Menyediakan kemitraan titip ternak, domba qurban, dan layanan aqiqah.",
+          "foundingDate": "2024",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Desa Ngrayung, Kecamatan Plumpang",
+            "addressLocality": "Tuban",
+            "addressRegion": "Jawa Timur",
+            "postalCode": "62382",
+            "addressCountry": "ID"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-857-9267-1147",
+            "contactType": "customer service",
+            "availableLanguage": ["Indonesian", "English"]
+          },
+          "sameAs": [
+            "https://www.instagram.com/mitraternakfarm",
+            "https://www.youtube.com/@mitraternakfarm"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.mitraternak.com/#localbusiness",
+          "name": "Mitra Ternak Farm",
+          "image": "https://www.mitraternak.com/images/hero/hero-bg.webp",
+          "url": "https://www.mitraternak.com",
+          "telephone": "+62-857-9267-1147",
+          "email": "kemitraan@mitraternak.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Desa Ngrayung, Kecamatan Plumpang",
+            "addressLocality": "Tuban",
+            "addressRegion": "Jawa Timur",
+            "postalCode": "62382",
+            "addressCountry": "ID"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -7.05,
+            "longitude": 112.05
+          },
+          "priceRange": "$$",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.mitraternak.com/#website",
+          "url": "https://www.mitraternak.com",
+          "name": "Mitra Ternak",
+          "description": "Peternakan domba berkelanjutan di Tuban, Jawa Timur",
+          "publisher": { "@id": "https://www.mitraternak.com/#organization" },
+          "inLanguage": ["id-ID", "en-US"]
+        }
+      ]
+    })} />
   </head>
   <body class="min-h-screen bg-offwhite font-body text-secondary antialiased">
     <Navbar lang={lang} />

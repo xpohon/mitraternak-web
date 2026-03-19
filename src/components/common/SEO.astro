@@ -9,13 +9,13 @@ interface Props {
   canonicalUrl?: string;
 }
 
-const SITE_NAME = 'Mitra Ternak - Solusi Bisnis Berkelanjutan';
+const SITE_NAME = 'Mitra Ternak';
 const SITE_URL = 'https://www.mitraternak.com';
 
 const {
   title,
   description,
-  image = `${SITE_URL}/og-default.jpg`,
+  image = `${SITE_URL}/images/logo/header.webp`,
   locale = 'id',
   canonicalUrl,
 } = Astro.props;
@@ -24,13 +24,16 @@ const currentPath = Astro.url.pathname;
 const canonical = canonicalUrl || `${SITE_URL}${currentPath}`;
 const alternates = getAlternateUrls(currentPath, SITE_URL);
 const ogLocale = locale === 'en' ? 'en_US' : 'id_ID';
-const fullTitle = `${title} | ${SITE_NAME}`;
+
+// Keep title under 60 chars. Only append brand if there's room.
+const fullTitle = title.length > 45 ? title : `${title} | ${SITE_NAME}`;
 ---
 
 <!-- Primary Meta Tags -->
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
 
 <!-- Canonical -->
 <link rel="canonical" href={canonical} />
