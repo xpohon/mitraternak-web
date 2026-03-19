@@ -1,0 +1,171 @@
+{
+  "version": "1.0",
+  "name": "Mitra Ternak CMS",
+  "description": "Content Management System for mitraternak.com - AI agent friendly",
+  "collections": {
+    "blog": {
+      "description": "Blog articles about sheep farming, partnerships, and innovations",
+      "storage": "src/content/blog/",
+      "format": "markdown",
+      "filePattern": "{slug}.md",
+      "schema": {
+        "title_id": {
+          "type": "string",
+          "required": true,
+          "description": "Blog post title in Indonesian",
+          "example": "Panduan Lengkap Beternak Domba untuk Pemula"
+        },
+        "title_en": {
+          "type": "string",
+          "required": true,
+          "description": "Blog post title in English",
+          "example": "Complete Guide to Sheep Farming for Beginners"
+        },
+        "date": {
+          "type": "string",
+          "required": true,
+          "description": "Publication date in YYYY-MM-DD format",
+          "example": "2026-03-19"
+        },
+        "author": {
+          "type": "string",
+          "required": false,
+          "default": "Tim Mitra Ternak",
+          "description": "Author name",
+          "example": "Tim Mitra Ternak"
+        },
+        "category": {
+          "type": "enum",
+          "required": true,
+          "values": ["panduan", "investasi", "qurban", "inovasi", "bisnis", "tips", "berita"],
+          "description": "Article category",
+          "example": "panduan"
+        },
+        "thumbnail": {
+          "type": "string",
+          "required": false,
+          "default": "/images/blog/default.webp",
+          "description": "Thumbnail image path",
+          "example": "/images/blog/sheep-farming-guide.webp"
+        },
+        "excerpt_id": {
+          "type": "string",
+          "required": true,
+          "description": "Short excerpt in Indonesian (1-2 sentences)",
+          "example": "Pelajari cara beternak domba dari nol hingga sukses."
+        },
+        "excerpt_en": {
+          "type": "string",
+          "required": true,
+          "description": "Short excerpt in English (1-2 sentences)",
+          "example": "Learn how to farm sheep from scratch to success."
+        },
+        "read_time": {
+          "type": "string",
+          "required": false,
+          "default": "5 min",
+          "description": "Estimated reading time",
+          "example": "8 min"
+        },
+        "content": {
+          "type": "markdown",
+          "required": true,
+          "description": "Full article body in Markdown format (placed after the frontmatter block)",
+          "example": "## Introduction\n\nSheep farming is one of the most rewarding..."
+        }
+      },
+      "api": {
+        "list": "GET /api/blog",
+        "get": "GET /api/blog/{slug}",
+        "create": "POST /api/blog",
+        "update": "PUT /api/blog/{slug}",
+        "delete": "DELETE /api/blog/{slug}"
+      }
+    },
+    "media": {
+      "description": "Media coverage and press mentions",
+      "storage": "src/content/media/",
+      "format": "yaml",
+      "filePattern": "{slug}.yaml",
+      "schema": {
+        "title_id": {
+          "type": "string",
+          "required": true,
+          "description": "Media item title in Indonesian",
+          "example": "Mitra Ternak Raih Penghargaan Inovasi Peternakan"
+        },
+        "title_en": {
+          "type": "string",
+          "required": true,
+          "description": "Media item title in English",
+          "example": "Mitra Ternak Wins Livestock Innovation Award"
+        },
+        "source": {
+          "type": "string",
+          "required": true,
+          "description": "Media outlet or source name",
+          "example": "Kompas"
+        },
+        "date": {
+          "type": "string",
+          "required": true,
+          "description": "Publication date in YYYY-MM-DD format",
+          "example": "2026-03-15"
+        },
+        "type": {
+          "type": "enum",
+          "required": true,
+          "values": ["news", "video"],
+          "description": "Type of media coverage",
+          "example": "news"
+        },
+        "url": {
+          "type": "string",
+          "required": true,
+          "description": "URL to the original media article or video",
+          "example": "https://kompas.com/article/mitra-ternak-innovation"
+        },
+        "thumbnail": {
+          "type": "string",
+          "required": false,
+          "default": "/images/media/default.webp",
+          "description": "Thumbnail image path",
+          "example": "/images/media/kompas-article.webp"
+        },
+        "summary_id": {
+          "type": "string",
+          "required": true,
+          "description": "Brief summary in Indonesian",
+          "example": "Mitra Ternak mendapat penghargaan atas inovasi di bidang peternakan domba."
+        },
+        "summary_en": {
+          "type": "string",
+          "required": true,
+          "description": "Brief summary in English",
+          "example": "Mitra Ternak received an award for innovation in sheep farming."
+        }
+      },
+      "api": {
+        "list": "GET /api/media",
+        "get": "GET /api/media/{slug}",
+        "create": "POST /api/media",
+        "update": "PUT /api/media/{slug}",
+        "delete": "DELETE /api/media/{slug}"
+      }
+    }
+  },
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "description": "Required for POST/PUT/DELETE. GET requests are public."
+  },
+  "rebuild": {
+    "endpoint": "POST /api/rebuild",
+    "description": "Triggers a Vercel deploy to rebuild static pages after content changes"
+  },
+  "fileAccess": {
+    "description": "For AI agents with file system access (Claude Code, etc.), you can directly edit files in src/content/blog/ and src/content/media/, then git commit and push to trigger auto-deploy.",
+    "blogPath": "src/content/blog/{slug}.md",
+    "mediaPath": "src/content/media/{slug}.yaml"
+  }
+}

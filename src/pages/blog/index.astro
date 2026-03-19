@@ -1,17 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ScrollReveal from '@/components/common/ScrollReveal.astro';
+import { getCollection } from 'astro:content';
 
-const articles = [
-  { slug: 'cara-ternak-domba-pemula', title: 'Panduan Lengkap Cara Ternak Domba untuk Pemula', desc: 'Pelajari langkah demi langkah cara memulai peternakan domba, dari pemilihan bibit hingga manajemen kandang yang efektif.', date: '2025-03-15', category: 'Panduan', readTime: '8 min' },
-  { slug: 'kemitraan-titip-ternak-domba-menguntungkan', title: 'Kemitraan Titip Ternak Domba: Investasi Menguntungkan Tanpa Ribet', desc: 'Mengapa program kemitraan titip ternak domba menjadi pilihan investasi yang menarik dengan ROI hingga 61%.', date: '2025-03-10', category: 'Investasi', readTime: '6 min' },
-  { slug: 'tips-memilih-domba-qurban-berkualitas', title: 'Tips Memilih Domba Qurban Berkualitas Sesuai Syariat', desc: 'Panduan memilih domba qurban yang sehat, sesuai syariat, dan harga yang wajar untuk ibadah Idul Adha.', date: '2025-03-05', category: 'Qurban', readTime: '5 min' },
-  { slug: 'inovasi-pakan-silase-domba', title: 'Inovasi Pakan Silase: Solusi Pakan Domba Sepanjang Tahun', desc: 'Bagaimana teknologi silase dari limbah pertanian lokal menurunkan biaya pakan hingga 40% dan emisi metana 27%.', date: '2025-02-28', category: 'Inovasi', readTime: '7 min' },
-  { slug: 'potensi-bisnis-peternakan-domba-indonesia', title: 'Potensi Bisnis Peternakan Domba di Indonesia 2025', desc: 'Analisis peluang usaha peternakan domba di Indonesia: permintaan tinggi, produksi rendah, dan peluang emas bagi peternak.', date: '2025-02-20', category: 'Bisnis', readTime: '6 min' },
-];
+const posts = await getCollection('blog', ({ data }) => data.published);
+const sorted = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('id-ID', {
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString('id-ID', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -38,21 +34,21 @@ function formatDate(dateStr: string) {
   <section class="py-16 md:py-24">
     <div class="mx-auto max-w-7xl px-4">
       <div class="grid gap-8 md:grid-cols-2">
-        {articles.map((article, index) => (
+        {sorted.map((post, index) => (
           <ScrollReveal delay={index * 100}>
-            <a href={`/blog/${article.slug}`} class="group block rounded-2xl bg-offwhite shadow-sm hover:shadow-md transition-shadow p-8">
+            <a href={`/blog/${post.id}`} class="group block rounded-2xl bg-offwhite shadow-sm hover:shadow-md transition-shadow p-8">
               <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-body text-primary font-semibold uppercase tracking-wide">{article.category}</span>
+                <span class="text-xs font-body text-primary font-semibold uppercase tracking-wide">{post.data.category}</span>
                 <span class="text-xs text-secondary/40">|</span>
-                <span class="text-xs font-body text-secondary/50">{formatDate(article.date)}</span>
+                <span class="text-xs font-body text-secondary/50">{formatDate(post.data.date)}</span>
                 <span class="text-xs text-secondary/40">|</span>
-                <span class="text-xs font-body text-secondary/50">{article.readTime} baca</span>
+                <span class="text-xs font-body text-secondary/50">{post.data.read_time} baca</span>
               </div>
               <h2 class="font-heading text-xl md:text-2xl text-secondary group-hover:text-primary transition-colors mb-3">
-                {article.title}
+                {post.data.title_id}
               </h2>
               <p class="font-body text-sm text-secondary/70 leading-relaxed line-clamp-3 mb-4">
-                {article.desc}
+                {post.data.excerpt_id}
               </p>
               <span class="inline-flex items-center gap-1 font-body text-sm font-medium text-primary group-hover:gap-2 transition-all">
                 Baca Selengkapnya

@@ -9,39 +9,66 @@ const t = useTranslations(lang);
 const mediaItems = [
   {
     type: 'news',
-    title: 'Mitra Ternak Secures Funding for Sheep Farming Expansion',
-    source: 'Kompas',
-    date: 'March 15, 2025',
+    title: 'Mitra Ternak Farm Tuban Records Surge in Demand for Sacrificial Sheep Ahead of Eid al-Adha',
+    summary: 'Ahead of Eid al-Adha, blessings are being felt by sacrificial animal farmers. One of them is in Desa Ngrayung, Kecamatan Plumpang, Tuban.',
+    source: 'petisi.co',
+    date: 'May 30, 2025',
+    thumbnail: '/images/media/petisi.webp',
+    url: 'https://petisi.co/mitra-ternak-farm-tuban-catat-lonjakan-permintaan-domba-kurban-jelang-idul-adha/',
+  },
+  {
+    type: 'news',
+    title: 'Sheep Breeding System Farmer in Tuban, Flooded with Orders Ahead of Eid al-Adha',
+    summary: 'In Tuban Regency, East Java, a sheep farm implements a modern breeding system, resulting in a flood of orders ahead of Eid al-Adha.',
+    source: 'iNews Tuban',
+    date: 'May 31, 2025',
+    thumbnail: '/images/media/inews.webp',
+    url: 'https://tuban.inews.id/read/602173/peternak-domba-sistem-breeding-di-tuban-banjir-pesanan-menjelang-idul-adha',
   },
   {
     type: 'video',
-    title: 'Silage Feed Innovation from Agricultural Waste',
-    source: 'YouTube',
-    date: 'February 10, 2025',
-  },
-  {
-    type: 'news',
-    title: 'Farming Digitalization: Digital Scales for Transparent Pricing',
-    source: 'Detik',
-    date: 'January 28, 2025',
+    title: 'Youth in Tuban Successfully Runs Sheep Breeding Business | Kabar Siang tvOne',
+    summary: 'Kabar Siang tvOneNews covers the success of millennial sheep breeders at Mitra Ternak Farm in Tuban.',
+    source: 'tvOneNews (YouTube)',
+    date: 'Jun 2, 2025',
+    thumbnail: '/images/media/tvone.webp',
+    url: 'https://youtu.be/J8UyBI6uE74',
   },
   {
     type: 'video',
-    title: 'Partner Farmer Profile in Tuban, East Java',
-    source: 'YouTube',
-    date: 'January 15, 2025',
+    title: 'Youth in Tuban Successfully Masters Sheep Breeding Business',
+    summary: 'Sketsa Bengawan JTV Bojonegoro covers the success of young sheep breeders in the Tuban and Lamongan region.',
+    source: 'JTV Bojonegoro (YouTube)',
+    date: 'May 30, 2025',
+    thumbnail: '/images/media/jtv.webp',
+    url: 'https://youtu.be/wvjwW76oN_M',
   },
   {
     type: 'news',
-    title: 'Farming Partnership Program Boosts Rural Economy',
-    source: 'Tempo',
-    date: 'December 5, 2024',
+    title: 'Berita Jatim Coverage on Mitra Ternak Farm Tuban',
+    summary: 'Berita Jatim covers the development of modern sheep farming in Tuban by Mitra Ternak Farm.',
+    source: 'Berita Jatim',
+    date: 'May 28, 2025',
+    thumbnail: '/images/media/beritajatim.webp',
+    url: '#',
   },
   {
     type: 'news',
-    title: 'PT Mitra Ternak Berkelanjutan Established in Tuban',
-    source: 'Jawa Pos',
-    date: 'October 1, 2024',
+    title: 'Mitra Ternak Farm Manages Thousands of Quality Sheep',
+    summary: 'Radio Republik Indonesia covers modern sheep farming innovation and partnerships in Tuban, East Java.',
+    source: 'RRI',
+    date: 'May 25, 2025',
+    thumbnail: '/images/media/rri.webp',
+    url: 'https://www.rri.co.id/daerah/1554079/mitra-ternak-farm-kelola-ribuan-domba-berkualitas',
+  },
+  {
+    type: 'video',
+    title: 'CNN Indonesia Highlights Tuban Sheep Farming Innovation',
+    summary: 'CNN Indonesia highlights sustainable sheep farming innovation in Tuban, East Java.',
+    source: 'CNN Indonesia (YouTube)',
+    date: 'May 20, 2025',
+    thumbnail: '/images/media/cnn.webp',
+    url: 'https://youtu.be/ym7HeTxi2oU',
   },
 ];
 ---
@@ -81,16 +108,17 @@ const mediaItems = [
         {mediaItems.map((item, index) => (
           <ScrollReveal delay={index * 100}>
             <article class="media-card overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg" data-type={item.type}>
-              <!-- Thumbnail Placeholder -->
-              <div class="relative flex h-48 items-center justify-center bg-neutral">
-                {item.type === 'video' ? (
-                  <svg class="h-16 w-16 text-secondary/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-                  </svg>
-                ) : (
-                  <svg class="h-16 w-16 text-secondary/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6V7.5z" />
-                  </svg>
+              <!-- Thumbnail -->
+              <div class="relative h-48 overflow-hidden">
+                <img src={item.thumbnail} alt={item.title} class="w-full h-full object-cover" loading="lazy" />
+                {item.type === 'video' && (
+                  <div class="absolute inset-0 flex items-center justify-center bg-dark/30">
+                    <div class="w-14 h-14 bg-primary/90 rounded-full flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-offwhite ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
                 )}
                 <!-- Type Badge -->
                 <span class:list={[
@@ -102,11 +130,20 @@ const mediaItems = [
               </div>
               <!-- Content -->
               <div class="p-6">
-                <h3 class="mb-3 font-heading text-lg text-secondary line-clamp-2">{item.title}</h3>
-                <div class="flex items-center justify-between text-sm font-body text-secondary/50">
+                <h3 class="mb-2 font-heading text-lg text-secondary line-clamp-2">{item.title}</h3>
+                <p class="mb-3 text-sm text-secondary/60 font-body line-clamp-3">{item.summary}</p>
+                <div class="flex items-center justify-between text-sm font-body text-secondary/50 mb-3">
                   <span>{item.source}</span>
                   <span>{item.date}</span>
                 </div>
+                {item.url !== '#' && (
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-primary font-semibold hover:text-primary-dark transition-colors font-body">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </article>
           </ScrollReveal>

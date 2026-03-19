@@ -3,6 +3,7 @@ import SectionHeading from '@/components/common/SectionHeading.astro';
 import { useTranslations } from '@/i18n/utils';
 import { getLangFromUrl } from '@/i18n/utils';
 import type { Lang } from '@/i18n/ui';
+import { getCollection } from 'astro:content';
 
 interface Props {
   lang?: Lang;
@@ -11,159 +12,84 @@ interface Props {
 const lang = Astro.props.lang || getLangFromUrl(Astro.url) || 'id';
 const t = useTranslations(lang);
 
-const mediaItems = [
-  {
-    title: lang === 'en' ? 'Surge in Demand for Sacrificial Sheep Ahead of Eid al-Adha' : 'Lonjakan Permintaan Domba Kurban Jelang Idul Adha',
-    source: 'petisi.co',
-    date: '30 Mei 2025',
-    summary: lang === 'en'
-      ? 'Ahead of Eid al-Adha, blessings are being felt by sacrificial animal farmers across various regions.'
-      : 'Menjelang Hari Raya Idul Adha, berkah mulai dirasakan para peternak hewan kurban di berbagai daerah.',
-    type: 'news',
-  },
-  {
-    title: lang === 'en' ? 'Breeding System Flooded with Sacrificial Orders' : 'Sistem Breeding Banjir Pesanan Kurban',
-    source: 'iNews Tuban',
-    date: '31 Mei 2025',
-    summary: lang === 'en'
-      ? 'In Tuban Regency, East Java, a sheep farm implements a modern breeding system.'
-      : 'Di Kabupaten Tuban, Jawa Timur, sebuah peternakan domba menerapkan sistem breeding modern.',
-    type: 'news',
-  },
-  {
-    title: lang === 'en' ? 'Youth in Tuban Successfully Runs Sheep Breeding Business' : 'Pemuda di Tuban Sukses Jalani Usaha Breeding Domba',
-    source: 'tvOneNews',
-    date: '2 Jun 2025',
-    summary: lang === 'en'
-      ? 'tvOneNews covers the success of youth in Tuban in the sheep breeding business.'
-      : 'Kabar Siang tvOneNews meliput kesuksesan pemuda di Tuban dalam usaha breeding domba.',
-    type: 'video',
-  },
-];
+// Get media from content collection
+const mediaCollection = await getCollection('media', ({ data }) => data.published);
+const allMedia = mediaCollection
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Get unique sources for trust bar
+const mediaSources = [...new Set(allMedia.map((m) => m.data.source.replace(' (YouTube)', '')))];
+
+// Get top 4 for featured cards
+const featuredMedia = allMedia.slice(0, 4).map((item) => ({
+  title: lang === 'en' ? item.data.title_en : item.data.title_id,
+  source: item.data.source,
+  date: new Date(item.data.date).toLocaleDateString(lang === 'en' ? 'en-US' : 'id-ID', { day: 'numeric', month: 'short', year: 'numeric' }),
+  type: item.data.type,
+  url: item.data.url,
+}));
 ---
 
 <section class="py-20 lg:py-28 bg-neutral" id="media">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <SectionHeading title={t('media.title')} subtitle={t('media.subtitle')} />
 
-    <div class="mt-16 relative">
-      <!-- Carousel container -->
-      <div
-        class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
-        id="media-carousel"
-      >
-        {mediaItems.map((item, i) => (
-          <div
-            class="min-w-[320px] md:min-w-[380px] snap-start bg-offwhite rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex-shrink-0"
-            data-scroll-reveal
-            data-delay={(i * 100).toString()}
-          >
-            <!-- Thumbnail placeholder -->
-            <div class="h-48 bg-gradient-to-br from-secondary/10 to-primary/10 flex items-center justify-center relative">
-              {item.type === 'video' && (
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-14 h-14 bg-primary/90 rounded-full flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-offwhite ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                </div>
-              )}
-              <div class="text-secondary/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91M3.75 21h16.5a1.5 1.5 0 001.5-1.5V4.5a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v15a1.5 1.5 0 001.5 1.5z" />
-                </svg>
-              </div>
-            </div>
+    <!-- Media Logo Trust Bar -->
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-8 md:gap-12">
+      {mediaSources.map((source) => (
+        <div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300">
+          <span class="font-heading text-lg md:text-xl text-secondary/80">{source}</span>
+        </div>
+      ))}
+    </div>
 
-            <div class="p-6">
-              <div class="flex items-center gap-2 text-xs text-secondary/50 font-body mb-3">
-                <span class="px-2 py-0.5 bg-primary/10 text-primary rounded-full capitalize">{item.type}</span>
-                <span>{item.source}</span>
-                <span>•</span>
-                <span>{item.date}</span>
-              </div>
-              <h3 class="font-heading text-lg text-secondary line-clamp-2">{item.title}</h3>
-              <p class="mt-2 text-sm text-secondary/60 font-body line-clamp-3">{item.summary}</p>
-              <a href={lang === 'en' ? '/en/media' : '/media'} class="mt-4 inline-flex items-center gap-1 text-sm text-primary font-semibold hover:text-primary-dark transition-colors font-body">
-                {t('media.readmore')}
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                </svg>
-              </a>
-            </div>
+    <div class="mt-4 w-full h-px bg-secondary/10"></div>
+
+    <!-- Featured Articles Grid -->
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {featuredMedia.map((item) => (
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block rounded-xl bg-offwhite p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-secondary/5"
+        >
+          <div class="flex items-center gap-2 mb-3">
+            <span class:list={[
+              'w-2 h-2 rounded-full flex-shrink-0',
+              item.type === 'video' ? 'bg-accent' : 'bg-primary',
+            ]}></span>
+            <span class="text-xs font-body text-secondary/50 uppercase tracking-wider">{item.source}</span>
           </div>
-        ))}
-      </div>
 
-      <!-- Navigation dots -->
-      <div class="flex justify-center gap-2 mt-6">
-        {mediaItems.map((_, i) => (
-          <button
-            class="w-2.5 h-2.5 rounded-full bg-primary/30 hover:bg-primary transition-colors carousel-dot"
-            data-index={i.toString()}
-            aria-label={`Go to slide ${i + 1}`}
-          ></button>
-        ))}
-      </div>
+          <h3 class="font-heading text-base text-secondary leading-snug line-clamp-3 group-hover:text-primary transition-colors duration-300">
+            {item.title}
+          </h3>
+
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs font-body text-secondary/40">{item.date}</span>
+            <span class="text-xs font-body text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+              {item.type === 'video' ? (lang === 'en' ? 'Watch' : 'Tonton') : (lang === 'en' ? 'Read' : 'Baca')}
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- View All Link -->
+    <div class="mt-8 text-center">
+      <a
+        href={lang === 'en' ? '/en/media' : '/media'}
+        class="inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:text-primary-dark transition-colors"
+      >
+        {lang === 'en' ? 'View all media coverage' : 'Lihat semua liputan media'}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
-
-<style>
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-</style>
-
-<script>
-  const carousel = document.getElementById('media-carousel');
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  if (carousel && dots.length) {
-    function scrollToCard(index: number) {
-      const card = carousel!.children[index] as HTMLElement;
-      if (card) {
-        carousel!.scrollTo({
-          left: card.offsetLeft - carousel!.offsetLeft,
-          behavior: 'smooth',
-        });
-      }
-    }
-
-    // Auto-scroll
-    let currentIndex = 0;
-    let autoPlay: ReturnType<typeof setInterval> | null = setInterval(() => {
-      currentIndex = (currentIndex + 1) % dots.length;
-      scrollToCard(currentIndex);
-      updateDots(currentIndex);
-    }, 4000);
-
-    // Dot click
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        scrollToCard(i);
-        updateDots(i);
-      });
-    });
-
-    // Pause on hover
-    carousel.addEventListener('mouseenter', () => {
-      if (autoPlay) { clearInterval(autoPlay); autoPlay = null; }
-    });
-
-    function updateDots(active: number) {
-      dots.forEach((d, i) => {
-        d.classList.toggle('bg-primary', i === active);
-        d.classList.toggle('bg-primary/30', i !== active);
-      });
-    }
-
-    updateDots(0);
-  }
-</script>

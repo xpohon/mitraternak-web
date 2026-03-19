@@ -2,10 +2,11 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import markdoc from '@astrojs/markdoc';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://www.mitraternak.com',
-  output: 'static',
+  adapter: vercel(),
   i18n: {
     defaultLocale: 'id',
     locales: ['id', 'en'],

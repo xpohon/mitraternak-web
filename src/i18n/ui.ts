@@ -15,40 +15,41 @@ export const ui = {
     'nav.activities': 'Kegiatan Kami',
     'nav.blog': 'Blog',
     'nav.contact': 'Hubungi Kami',
-    'nav.cta': 'Mulai Bermitra',
+    'nav.cta': 'Kolaborasi',
 
     // Hero
     'hero.title': 'Transformasi Peternakan Domba dengan Inovasi & Keberlanjutan',
     'hero.subtitle': 'Memberdayakan petani kecil, menurunkan emisi, dan menciptakan nilai dari hulu ke hilir.',
-    'hero.cta.primary': 'Mulai Bermitra',
+    'hero.cta.primary': 'Kolaborasi',
     'hero.cta.secondary': 'Pelajari Lebih Lanjut',
     'hero.scroll': 'Gulir ke bawah',
 
     // Impact Numbers
-    'impact.title': 'Dampak Kami',
+    'impact.title': 'Dampak Kami di 2030',
     'impact.subtitle': 'Komitmen nyata untuk peternakan berkelanjutan',
     'impact.methane': 'Penurunan Emisi Metana',
     'impact.productivity': 'Peningkatan Produktivitas',
     'impact.feedcost': 'Pengurangan Biaya Pakan',
-    'impact.farmers': 'Peternak Mitra',
+    'impact.farmers': 'Peternak Kecil',
 
     // About
     'about.title': 'Tentang Kami',
     'about.subtitle': 'Membangun ekosistem peternakan domba berkelanjutan',
-    'about.description': 'Didirikan pada tahun 2024, PT Mitra Ternak Berkelanjutan adalah perusahaan agribisnis yang berorientasi pada misi membangun ekosistem peternakan domba yang terintegrasi. Dengan menggabungkan kearifan lokal dan praktik modern, kami bertujuan meningkatkan kesejahteraan petani, menjamin kesejahteraan hewan, dan mengurangi dampak lingkungan.',
+    'about.description': 'Didirikan pada tahun 2024, PT Mitra Ternak Berkelanjutan adalah perusahaan agribisnis yang berorientasi pada misi membangun ekosistem peternakan domba yang modern, inklusif, dan berkelanjutan di Indonesia.',
+    'about.mission': 'Misi kami adalah memberdayakan petani kecil dan generasi muda melalui inovasi, teknologi, dan kemitraan di seluruh rantai nilai peternakan mulai dari pembibitan, pakan, pengelolaan limbah, hingga hilirisasi produk.',
     'about.readmore': 'Selengkapnya',
 
     // Value Chain
     'valuechain.title': 'Apa yang Kami Lakukan',
     'valuechain.subtitle': 'Ekosistem bisnis terintegrasi dari hulu ke hilir',
     'valuechain.hulu.title': 'Hulu: Pembibitan & Kemitraan',
-    'valuechain.hulu.desc': 'Akses ke bibit domba unggul, model kemitraan ternak transparan, dan pendampingan teknis untuk mitra peternak.',
-    'valuechain.penghubung.title': 'Penghubung: Pakan & Kesehatan',
-    'valuechain.penghubung.desc': 'Inovasi pakan silase dari limbah pertanian dan perlakuan probiotik alami untuk kesehatan ternak optimal.',
-    'valuechain.hilir.title': 'Hilir: Pemasaran & Produk',
-    'valuechain.hilir.desc': 'Pemasaran domba melalui timbangan digital, sistem harga transparan, dan inovasi produk bernilai tinggi.',
+    'valuechain.hulu.desc': 'Kami menyediakan akses ke bibit domba unggul, menerapkan model kemitraan ternak yang transparan, dan memberikan pendampingan teknis kepada mitra peternak.',
+    'valuechain.penghubung.title': 'Penghubung: Pakan & Kesejahteraan Hewan',
+    'valuechain.penghubung.desc': 'Program inovasi pakan kami memanfaatkan limbah pertanian lokal seperti batang jagung dan hijauan untuk memproduksi silase, dengan penurunan emisi metana sebesar 27%.',
+    'valuechain.hilir.title': 'Hilir: Pemasaran & Inovasi Produk',
+    'valuechain.hilir.desc': 'Pemasaran domba melalui timbangan digital dan sistem harga transparan, serta layanan Mitra Bhakti Aqiqah dan Bisa Qurban.',
     'valuechain.nilaitambah.title': 'Nilai Tambah: Pengelolaan Limbah',
-    'valuechain.nilaitambah.desc': 'Pengolahan limbah peternakan menjadi pupuk organik dan biogas untuk mendukung ekonomi sirkular.',
+    'valuechain.nilaitambah.desc': 'Kami mengolah limbah kotoran domba menjadi dua produk bernilai tinggi: pupuk organik dan briket kotoran untuk mendukung ekonomi sirkular.',
 
     // Products
     'products.title': 'Produk Kami',
@@ -60,10 +61,12 @@ export const ui = {
     'sdgs.subtitle': 'Menyelaraskan bisnis dengan Tujuan Pembangunan Berkelanjutan (SDGs) PBB',
     'sdgs.1.title': 'Tanpa Kemiskinan',
     'sdgs.1.desc': 'Membantu peternak lokal mendapatkan harga jual yang adil melalui sistem timbangan digital, meningkatkan pendapatan hingga 30% di atas harga pasar.',
-    'sdgs.9.title': 'Industri, Inovasi & Infrastruktur',
-    'sdgs.9.desc': 'Membangun sistem peternakan berbasis data dan digital, memperkenalkan perdagangan domba berbasis timbangan digital.',
-    'sdgs.17.title': 'Kemitraan untuk Tujuan',
-    'sdgs.17.desc': 'Berkolaborasi dengan universitas, vokasi, koperasi, dan mitra swasta untuk memperluas dampak sosial.',
+    'sdgs.8.title': 'Pekerjaan Layak & Pertumbuhan Ekonomi',
+    'sdgs.8.desc': 'Menciptakan lapangan kerja di sektor peternakan, memberdayakan generasi muda, dan mendorong pertumbuhan ekonomi pedesaan.',
+    'sdgs.12.title': 'Konsumsi & Produksi Bertanggung Jawab',
+    'sdgs.12.desc': 'Mengolah limbah peternakan menjadi pupuk organik dan briket, menerapkan praktik peternakan berkelanjutan dari hulu ke hilir.',
+    'sdgs.13.title': 'Penanganan Perubahan Iklim',
+    'sdgs.13.desc': 'Menurunkan emisi metana 27% melalui inovasi pakan silase dan pengelolaan limbah yang bertanggung jawab.',
 
     // Media
     'media.title': 'Liputan Media',
@@ -131,35 +134,36 @@ export const ui = {
     // Hero
     'hero.title': 'Transforming Sheep Farming with Innovation & Sustainability',
     'hero.subtitle': 'Empowering smallholder farmers, reducing emissions, and creating value from upstream to downstream.',
-    'hero.cta.primary': 'Partner With Us',
+    'hero.cta.primary': 'Collaborate',
     'hero.cta.secondary': 'Learn More',
     'hero.scroll': 'Scroll down',
 
     // Impact Numbers
-    'impact.title': 'Our Impact',
+    'impact.title': 'Our Impact by 2030',
     'impact.subtitle': 'Real commitment to sustainable farming',
     'impact.methane': 'Methane Emission Reduction',
     'impact.productivity': 'Productivity Increase',
     'impact.feedcost': 'Feed Cost Reduction',
-    'impact.farmers': 'Partner Farmers',
+    'impact.farmers': 'Smallholder Farmers',
 
     // About
     'about.title': 'About Us',
     'about.subtitle': 'Building a sustainable sheep farming ecosystem',
-    'about.description': 'Founded in 2024, PT Mitra Ternak Berkelanjutan is an agribusiness company focused on building an integrated sheep farming ecosystem. By combining local wisdom with modern practices, we aim to improve farmer welfare, ensure animal wellbeing, and reduce environmental impact.',
+    'about.description': 'Founded in 2024, PT Mitra Ternak Berkelanjutan is an agribusiness company oriented on the mission of building a modern, inclusive, and sustainable sheep farming ecosystem in Indonesia.',
+    'about.mission': 'Our mission is to empower smallholder farmers and the younger generation through innovation, technology, and partnerships across the entire farming value chain from breeding, feed, waste management, to product downstream.',
     'about.readmore': 'Read More',
 
     // Value Chain
     'valuechain.title': 'What We Do',
     'valuechain.subtitle': 'An integrated business ecosystem from upstream to downstream',
     'valuechain.hulu.title': 'Upstream: Breeding & Partnership',
-    'valuechain.hulu.desc': 'Access to superior sheep breeds, transparent farming partnerships, and technical assistance for partner farmers.',
-    'valuechain.penghubung.title': 'Connector: Feed & Health',
-    'valuechain.penghubung.desc': 'Silage feed innovation from agricultural waste and natural probiotic treatments for optimal livestock health.',
-    'valuechain.hilir.title': 'Downstream: Marketing & Products',
-    'valuechain.hilir.desc': 'Sheep marketing through digital scales, transparent pricing systems, and high-value product innovations.',
+    'valuechain.hulu.desc': 'We provide access to superior sheep breeds, implement transparent farming partnership models, and provide technical assistance to partner farmers.',
+    'valuechain.penghubung.title': 'Connector: Feed & Animal Welfare',
+    'valuechain.penghubung.desc': 'Our feed innovation program utilizes local agricultural waste such as corn stalks and greens to produce silage, with a 27% reduction in methane emissions.',
+    'valuechain.hilir.title': 'Downstream: Marketing & Product Innovation',
+    'valuechain.hilir.desc': 'Sheep marketing through digital scales and transparent pricing, plus Mitra Bhakti Aqiqah and Bisa Qurban services.',
     'valuechain.nilaitambah.title': 'Added Value: Waste Management',
-    'valuechain.nilaitambah.desc': 'Processing farm waste into organic fertilizer and biogas to support the circular economy.',
+    'valuechain.nilaitambah.desc': 'We process sheep manure into two high-value products: organic fertilizer and manure briquettes to support the circular economy.',
 
     // Products
     'products.title': 'Our Products',
@@ -171,10 +175,12 @@ export const ui = {
     'sdgs.subtitle': 'Aligning our business with the UN Sustainable Development Goals (SDGs)',
     'sdgs.1.title': 'No Poverty',
     'sdgs.1.desc': 'Helping local farmers get fair prices through digital weighing systems, increasing income by up to 30% above market price.',
-    'sdgs.9.title': 'Industry, Innovation & Infrastructure',
-    'sdgs.9.desc': 'Building data-driven and digital farming systems, introducing digital scale-based sheep trading.',
-    'sdgs.17.title': 'Partnerships for the Goals',
-    'sdgs.17.desc': 'Collaborating with universities, vocational schools, cooperatives, and private partners to expand social impact.',
+    'sdgs.8.title': 'Decent Work & Economic Growth',
+    'sdgs.8.desc': 'Creating jobs in the livestock sector, empowering the younger generation, and driving rural economic growth.',
+    'sdgs.12.title': 'Responsible Consumption & Production',
+    'sdgs.12.desc': 'Processing farm waste into organic fertilizer and briquettes, implementing sustainable farming practices from upstream to downstream.',
+    'sdgs.13.title': 'Climate Action',
+    'sdgs.13.desc': 'Reducing methane emissions by 27% through silage feed innovation and responsible waste management.',
 
     // Media
     'media.title': 'Media Coverage',

@@ -2,8 +2,8 @@ heroTitleId: "Transformasi Peternakan Domba dengan Inovasi & Keberlanjutan"
 heroTitleEn: "Transforming Sheep Farming with Innovation & Sustainability"
 heroSubtitleId: "Memberdayakan petani kecil, menurunkan emisi, dan menciptakan nilai dari hulu ke hilir."
 heroSubtitleEn: "Empowering smallholder farmers, reducing emissions, and creating value from upstream to downstream."
-aboutTeaserId: "Didirikan pada tahun 2024, PT Mitra Ternak Berkelanjutan adalah perusahaan agribisnis yang berorientasi pada misi membangun ekosistem peternakan domba yang terintegrasi. Dengan menggabungkan kearifan lokal dan praktik modern, kami bertujuan meningkatkan kesejahteraan petani, menjamin kesejahteraan hewan, dan mengurangi dampak lingkungan."
-aboutTeaserEn: "Founded in 2024, PT Mitra Ternak Berkelanjutan is an agribusiness company focused on building an integrated sheep farming ecosystem. By combining local wisdom with modern practices, we aim to improve farmer welfare, ensure animal wellbeing, and reduce environmental impact."
+aboutTeaserId: "Didirikan pada tahun 2024, PT Mitra Ternak Berkelanjutan adalah perusahaan agribisnis yang berorientasi pada misi membangun ekosistem peternakan domba yang modern, inklusif, dan berkelanjutan di Indonesia."
+aboutTeaserEn: "Founded in 2024, PT Mitra Ternak Berkelanjutan is an agribusiness company oriented on the mission of building a modern, inclusive, and sustainable sheep farming ecosystem in Indonesia."
 impactNumbers:
   - value: 27
     suffix: "%"
@@ -17,7 +17,7 @@ impactNumbers:
     suffix: "%"
     labelId: "Pengurangan Biaya Pakan"
     labelEn: "Feed Cost Reduction"
-  - value: 500
-    suffix: "+"
-    labelId: "Peternak Mitra"
-    labelEn: "Partner Farmers"
+  - value: 5
+    suffix: "K+"
+    labelId: "Peternak Kecil"
+    labelEn: "Smallholder Farmers"

@@ -20,16 +20,22 @@ const sdgs = [
     desc: t('sdgs.1.desc'),
   },
   {
-    number: 9,
-    color: '#FD6925',
-    title: t('sdgs.9.title'),
-    desc: t('sdgs.9.desc'),
+    number: 8,
+    color: '#A21942',
+    title: t('sdgs.8.title'),
+    desc: t('sdgs.8.desc'),
   },
   {
-    number: 17,
-    color: '#19486A',
-    title: t('sdgs.17.title'),
-    desc: t('sdgs.17.desc'),
+    number: 12,
+    color: '#BF8B2E',
+    title: t('sdgs.12.title'),
+    desc: t('sdgs.12.desc'),
+  },
+  {
+    number: 13,
+    color: '#3F7E44',
+    title: t('sdgs.13.title'),
+    desc: t('sdgs.13.desc'),
   },
 ];
 ---
@@ -42,7 +48,7 @@ const sdgs = [
       dark={true}
     />
 
-    <div class="mt-16 grid md:grid-cols-3 gap-8">
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {sdgs.map((sdg, i) => (
         <SDGItem
           number={sdg.number}
