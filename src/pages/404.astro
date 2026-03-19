@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'id';
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t('404.title')} description={t('404.description')} lang="id">
+  <div class="flex min-h-[70vh] items-center justify-center px-4">
+    <div class="text-center">
+      <h1 class="font-heading text-8xl text-primary md:text-9xl">404</h1>
+      <h2 class="mt-4 font-heading text-2xl text-secondary md:text-3xl">{t('404.title')}</h2>
+      <p class="mt-4 font-body text-lg text-secondary/70">{t('404.description')}</p>
+      <div class="mt-8">
+        <Button href="/" variant="primary" size="lg">
+          {t('404.home')}
+        </Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

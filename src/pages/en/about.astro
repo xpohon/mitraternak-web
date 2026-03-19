@@ -1,0 +1,157 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import ScrollReveal from '@/components/common/ScrollReveal.astro';
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<PageLayout
+  title={t('aboutpage.title')}
+  description={t('aboutpage.subtitle')}
+  heroTitle={t('aboutpage.title')}
+  heroSubtitle={t('aboutpage.subtitle')}
+>
+  <!-- Vision & Mission -->
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4">
+      <SectionHeading title="Vision & Mission" />
+      <div class="grid gap-8 md:grid-cols-2">
+        <ScrollReveal direction="left">
+          <div class="rounded-2xl bg-neutral p-8">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+              <svg class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h3 class="mb-3 font-heading text-2xl text-secondary">{t('aboutpage.vision.title')}</h3>
+            <p class="font-body text-secondary/70 leading-relaxed">{t('aboutpage.vision.desc')}</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal direction="right">
+          <div class="rounded-2xl bg-neutral p-8">
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent/10">
+              <svg class="h-7 w-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="mb-3 font-heading text-2xl text-secondary">{t('aboutpage.mission.title')}</h3>
+            <p class="font-body text-secondary/70 leading-relaxed">{t('aboutpage.mission.desc')}</p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Timeline -->
+  <section class="bg-offwhite py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4">
+      <SectionHeading title="Our Journey" subtitle="Key milestones in Mitra Ternak's story" />
+      <div class="relative mx-auto max-w-3xl">
+        <!-- Vertical line -->
+        <div class="absolute left-6 top-0 h-full w-0.5 bg-primary/20 md:left-1/2 md:-translate-x-px"></div>
+
+        <!-- Milestone 1 -->
+        <ScrollReveal class="relative mb-12 pl-16 md:pl-0 md:pr-1/2">
+          <div class="md:mr-auto md:w-[calc(50%-2rem)] md:text-right">
+            <div class="absolute left-4 top-1 h-5 w-5 rounded-full border-4 border-primary bg-offwhite md:left-1/2 md:-translate-x-1/2"></div>
+            <span class="mb-2 inline-block rounded-full bg-primary px-3 py-1 text-sm font-body font-medium text-offwhite">2024</span>
+            <h3 class="mt-2 font-heading text-xl text-secondary">Company Founded</h3>
+            <p class="mt-1 font-body text-secondary/70">PT Mitra Ternak Berkelanjutan was established in Tuban, East Java with a vision to build a sustainable sheep farming ecosystem.</p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Milestone 2 -->
+        <ScrollReveal delay={150} class="relative mb-12 pl-16 md:pl-0">
+          <div class="md:ml-auto md:w-[calc(50%-2rem)]">
+            <div class="absolute left-4 top-1 h-5 w-5 rounded-full border-4 border-accent bg-offwhite md:left-1/2 md:-translate-x-1/2"></div>
+            <span class="mb-2 inline-block rounded-full bg-accent px-3 py-1 text-sm font-body font-medium text-offwhite">2025</span>
+            <h3 class="mt-2 font-heading text-xl text-secondary">Expansion & Partnerships</h3>
+            <p class="mt-1 font-body text-secondary/70">Launch of farming partnership programs, silage feed innovation development, and collaboration with local universities.</p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Milestone 3 -->
+        <ScrollReveal delay={300} class="relative mb-12 pl-16 md:pl-0">
+          <div class="md:mr-auto md:w-[calc(50%-2rem)] md:text-right">
+            <div class="absolute left-4 top-1 h-5 w-5 rounded-full border-4 border-primary bg-offwhite md:left-1/2 md:-translate-x-1/2"></div>
+            <span class="mb-2 inline-block rounded-full bg-primary px-3 py-1 text-sm font-body font-medium text-offwhite">2026</span>
+            <h3 class="mt-2 font-heading text-xl text-secondary">Digitalization & Scale Systems</h3>
+            <p class="mt-1 font-body text-secondary/70">Implementation of digital weighing systems for transparent sheep trading and IoT technology adoption across partner farms.</p>
+          </div>
+        </ScrollReveal>
+
+        <!-- Milestone 4 -->
+        <ScrollReveal delay={450} class="relative pl-16 md:pl-0">
+          <div class="md:ml-auto md:w-[calc(50%-2rem)]">
+            <div class="absolute left-4 top-1 h-5 w-5 rounded-full border-4 border-warm bg-offwhite md:left-1/2 md:-translate-x-1/2"></div>
+            <span class="mb-2 inline-block rounded-full bg-warm px-3 py-1 text-sm font-body font-medium text-offwhite">2030</span>
+            <h3 class="mt-2 font-heading text-xl text-secondary">Future Vision</h3>
+            <p class="mt-1 font-body text-secondary/70">Becoming the leading sheep farming agribusiness in Indonesia with a network of 1000+ partner farmers and net-zero emissions.</p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Grid -->
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4">
+      <SectionHeading title={t('aboutpage.team.title')} subtitle={t('aboutpage.team.subtitle')} />
+      <div class="grid gap-8 sm:grid-cols-2">
+        <ScrollReveal>
+          <div class="rounded-2xl bg-neutral p-8 text-center">
+            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-primary/10">
+              <svg class="h-12 w-12 text-primary/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl text-secondary">Founder Name</h3>
+            <p class="mt-1 font-body text-secondary/60">Founder & CEO</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <div class="rounded-2xl bg-neutral p-8 text-center">
+            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-accent/10">
+              <svg class="h-12 w-12 text-accent/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl text-secondary">Co-Founder Name</h3>
+            <p class="mt-1 font-body text-secondary/60">Co-Founder & COO</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <div class="rounded-2xl bg-neutral p-8 text-center">
+            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-warm/10">
+              <svg class="h-12 w-12 text-warm/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl text-secondary">Team Member Name</h3>
+            <p class="mt-1 font-body text-secondary/60">Head of Operations</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={300}>
+          <div class="rounded-2xl bg-neutral p-8 text-center">
+            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-secondary/10">
+              <svg class="h-12 w-12 text-secondary/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl text-secondary">Team Member Name</h3>
+            <p class="mt-1 font-body text-secondary/60">Head of Marketing</p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  import { initScrollReveal } from '@/utils/animations';
+  initScrollReveal();
+</script>

@@ -1,0 +1,67 @@
+---
+interface Props {
+  direction?: 'up' | 'left' | 'right';
+  delay?: number;
+  class?: string;
+}
+
+const { direction = 'up', delay = 0, class: className = '' } = Astro.props;
+---
+
+<div
+  data-scroll-reveal
+  data-direction={direction}
+  data-delay={delay}
+  class={className}
+>
+  <slot />
+</div>
+
+<script>
+  function initScrollReveal() {
+    const elements = document.querySelectorAll<HTMLElement>('[data-scroll-reveal]');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = parseInt(el.dataset.delay || '0', 10);
+
+            if (delay > 0) {
+              setTimeout(() => el.classList.add('revealed'), delay);
+            } else {
+              el.classList.add('revealed');
+            }
+
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    elements.forEach((el) => {
+      // Set initial transform based on direction
+      const direction = el.dataset.direction || 'up';
+      switch (direction) {
+        case 'left':
+          el.style.transform = 'translateX(-30px)';
+          break;
+        case 'right':
+          el.style.transform = 'translateX(30px)';
+          break;
+        case 'up':
+        default:
+          el.style.transform = 'translateY(30px)';
+          break;
+      }
+
+      observer.observe(el);
+    });
+  }
+
+  // Run on initial load and on Astro page transitions
+  initScrollReveal();
+  document.addEventListener('astro:after-swap', initScrollReveal);
+</script>

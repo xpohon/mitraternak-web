@@ -1,0 +1,133 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { useTranslations } from '@/i18n/utils';
+import { getLangFromUrl } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url) || 'id';
+const t = useTranslations(lang);
+
+const steps = [
+  {
+    icon: '🌱',
+    title: t('valuechain.hulu.title'),
+    desc: t('valuechain.hulu.desc'),
+    color: 'bg-accent/10 border-accent',
+  },
+  {
+    icon: '🌾',
+    title: t('valuechain.penghubung.title'),
+    desc: t('valuechain.penghubung.desc'),
+    color: 'bg-warm/10 border-warm',
+  },
+  {
+    icon: '📊',
+    title: t('valuechain.hilir.title'),
+    desc: t('valuechain.hilir.desc'),
+    color: 'bg-primary/10 border-primary',
+  },
+  {
+    icon: '♻️',
+    title: t('valuechain.nilaitambah.title'),
+    desc: t('valuechain.nilaitambah.desc'),
+    color: 'bg-accent/10 border-accent',
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-neutral" id="valuechain">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <SectionHeading title={t('valuechain.title')} subtitle={t('valuechain.subtitle')} />
+
+    <!-- Desktop: Horizontal flow -->
+    <div class="hidden lg:block mt-16">
+      <div class="grid grid-cols-4 gap-6 relative">
+        <!-- Connecting line -->
+        <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-primary/20 -translate-y-1/2 z-0 valuechain-line"></div>
+
+        {steps.map((step, i) => (
+          <div
+            class={`relative z-10 ${step.color} border-2 rounded-2xl p-6 bg-offwhite valuechain-card`}
+            data-scroll-reveal
+            data-delay={(i * 200).toString()}
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">{step.icon}</span>
+              <span class="w-8 h-8 rounded-full bg-primary text-offwhite flex items-center justify-center text-sm font-bold font-body">
+                {i + 1}
+              </span>
+            </div>
+            <h3 class="font-heading text-xl text-secondary mb-3">{step.title}</h3>
+            <p class="text-sm text-secondary/70 leading-relaxed font-body">{step.desc}</p>
+            {i < steps.length - 1 && (
+              <div class="absolute top-1/2 -right-4 w-8 h-8 flex items-center justify-center text-primary z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile: Vertical timeline -->
+    <div class="lg:hidden mt-12">
+      <div class="relative">
+        <!-- Vertical line -->
+        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-primary/20"></div>
+
+        <div class="space-y-8">
+          {steps.map((step, i) => (
+            <div class="relative pl-16" data-scroll-reveal data-delay={(i * 150).toString()}>
+              <!-- Circle on timeline -->
+              <div class="absolute left-3 top-6 w-7 h-7 rounded-full bg-primary text-offwhite flex items-center justify-center text-xs font-bold font-body">
+                {i + 1}
+              </div>
+
+              <div class={`${step.color} border-2 rounded-xl p-5 bg-offwhite`}>
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-2xl">{step.icon}</span>
+                  <h3 class="font-heading text-lg text-secondary">{step.title}</h3>
+                </div>
+                <p class="text-sm text-secondary/70 leading-relaxed font-body">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Animate the connecting line
+    const line = document.querySelector('.valuechain-line');
+    if (line) {
+      gsap.fromTo(
+        line,
+        { scaleX: 0, transformOrigin: 'left center' },
+        {
+          scaleX: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#valuechain',
+            start: 'top 60%',
+            end: 'center center',
+            scrub: 1,
+          },
+        }
+      );
+    }
+  }
+</script>

@@ -1,0 +1,155 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import ScrollReveal from '@/components/common/ScrollReveal.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'id';
+const t = useTranslations(lang);
+
+const mediaItems = [
+  {
+    type: 'berita',
+    title: 'Mitra Ternak Raih Pendanaan untuk Ekspansi Peternakan Domba',
+    source: 'Kompas',
+    date: '15 Maret 2025',
+  },
+  {
+    type: 'video',
+    title: 'Inovasi Pakan Silase dari Limbah Pertanian',
+    source: 'YouTube',
+    date: '10 Februari 2025',
+  },
+  {
+    type: 'berita',
+    title: 'Digitalisasi Peternakan: Timbangan Digital untuk Harga Transparan',
+    source: 'Detik',
+    date: '28 Januari 2025',
+  },
+  {
+    type: 'video',
+    title: 'Profil Peternak Mitra di Tuban, Jawa Timur',
+    source: 'YouTube',
+    date: '15 Januari 2025',
+  },
+  {
+    type: 'berita',
+    title: 'Program Kemitraan Ternak Dorong Ekonomi Pedesaan',
+    source: 'Tempo',
+    date: '5 Desember 2024',
+  },
+  {
+    type: 'berita',
+    title: 'Pendirian PT Mitra Ternak Berkelanjutan di Tuban',
+    source: 'Jawa Pos',
+    date: '1 Oktober 2024',
+  },
+];
+---
+
+<PageLayout
+  title={t('mediapage.title')}
+  description={t('mediapage.subtitle')}
+  heroTitle={t('mediapage.title')}
+  heroSubtitle={t('mediapage.subtitle')}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4">
+      <!-- Tab Filters -->
+      <div class="mb-12 flex flex-wrap justify-center gap-3">
+        <button
+          class="media-tab active rounded-full bg-primary px-6 py-2 font-body font-medium text-offwhite transition-colors"
+          data-filter="semua"
+        >
+          Semua
+        </button>
+        <button
+          class="media-tab rounded-full bg-neutral px-6 py-2 font-body font-medium text-secondary transition-colors hover:bg-primary hover:text-offwhite"
+          data-filter="berita"
+        >
+          Berita
+        </button>
+        <button
+          class="media-tab rounded-full bg-neutral px-6 py-2 font-body font-medium text-secondary transition-colors hover:bg-primary hover:text-offwhite"
+          data-filter="video"
+        >
+          Video
+        </button>
+      </div>
+
+      <!-- Media Grid -->
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" id="media-grid">
+        {mediaItems.map((item, index) => (
+          <ScrollReveal delay={index * 100}>
+            <article class="media-card overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-lg" data-type={item.type}>
+              <!-- Thumbnail Placeholder -->
+              <div class="relative flex h-48 items-center justify-center bg-neutral">
+                {item.type === 'video' ? (
+                  <svg class="h-16 w-16 text-secondary/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                  </svg>
+                ) : (
+                  <svg class="h-16 w-16 text-secondary/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6V7.5z" />
+                  </svg>
+                )}
+                <!-- Type Badge -->
+                <span class:list={[
+                  'absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-body font-medium text-offwhite',
+                  item.type === 'video' ? 'bg-accent' : 'bg-primary',
+                ]}>
+                  {item.type === 'video' ? 'Video' : 'Berita'}
+                </span>
+              </div>
+              <!-- Content -->
+              <div class="p-6">
+                <h3 class="mb-3 font-heading text-lg text-secondary line-clamp-2">{item.title}</h3>
+                <div class="flex items-center justify-between text-sm font-body text-secondary/50">
+                  <span>{item.source}</span>
+                  <span>{item.date}</span>
+                </div>
+              </div>
+            </article>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  import { initScrollReveal } from '@/utils/animations';
+  initScrollReveal();
+
+  function initMediaTabs() {
+    const tabs = document.querySelectorAll('.media-tab');
+    const cards = document.querySelectorAll('.media-card');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const filter = (tab as HTMLElement).dataset.filter;
+
+        // Update active tab
+        tabs.forEach((t) => {
+          t.classList.remove('active', 'bg-primary', 'text-offwhite');
+          t.classList.add('bg-neutral', 'text-secondary');
+        });
+        tab.classList.add('active', 'bg-primary', 'text-offwhite');
+        tab.classList.remove('bg-neutral', 'text-secondary');
+
+        // Filter cards
+        cards.forEach((card) => {
+          const type = (card as HTMLElement).dataset.type;
+          const wrapper = card.closest('[data-scroll-reveal]') as HTMLElement;
+          if (filter === 'semua' || type === filter) {
+            if (wrapper) wrapper.style.display = '';
+          } else {
+            if (wrapper) wrapper.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  initMediaTabs();
+  document.addEventListener('astro:after-swap', initMediaTabs);
+</script>

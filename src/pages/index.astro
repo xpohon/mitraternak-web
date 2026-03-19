@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import ImpactNumbers from '@/components/home/ImpactNumbers.astro';
+import AboutTeaser from '@/components/home/AboutTeaser.astro';
+import ValueChainFlow from '@/components/home/ValueChainFlow.astro';
+import ProductShowcase from '@/components/home/ProductShowcase.astro';
+import ImpactSDGs from '@/components/home/ImpactSDGs.astro';
+import MediaCarousel from '@/components/home/MediaCarousel.astro';
+import CTASection from '@/components/home/CTASection.astro';
+
+const lang = 'id';
+---
+
+<BaseLayout
+  title="Mitra Ternak - Solusi Bisnis Peternakan Berkelanjutan"
+  description="PT Mitra Ternak Berkelanjutan - Ekosistem peternakan domba terintegrasi yang memberdayakan petani kecil, menurunkan emisi, dan menciptakan nilai dari hulu ke hilir."
+  lang={lang}
+>
+  <Hero lang={lang} />
+  <ImpactNumbers lang={lang} />
+  <AboutTeaser lang={lang} />
+  <ValueChainFlow lang={lang} />
+  <ProductShowcase lang={lang} />
+  <ImpactSDGs lang={lang} />
+  <MediaCarousel lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>
+
+<script>
+  import { initScrollReveal } from '@/utils/animations';
+  initScrollReveal();
+</script>

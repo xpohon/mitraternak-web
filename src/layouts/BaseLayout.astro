@@ -1,0 +1,48 @@
+---
+import '@/styles/global.css';
+import SEO from '@/components/common/SEO.astro';
+import Navbar from '@/components/common/Navbar.astro';
+import Footer from '@/components/common/Footer.astro';
+import WhatsAppFloat from '@/components/common/WhatsAppFloat.astro';
+import { getLangFromUrl } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  lang?: Lang;
+}
+
+const currentLang = getLangFromUrl(Astro.url);
+const {
+  title,
+  description,
+  image,
+  lang = (Astro.currentLocale as Lang) || currentLang || 'id',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      locale={lang}
+    />
+  </head>
+  <body class="min-h-screen bg-offwhite font-body text-secondary antialiased">
+    <Navbar lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <WhatsAppFloat />
+  </body>
+</html>

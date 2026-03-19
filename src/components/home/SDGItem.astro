@@ -1,0 +1,28 @@
+---
+interface Props {
+  number: number;
+  color: string;
+  title: string;
+  desc: string;
+  delay?: number;
+}
+
+const { number, color, title, desc, delay = 0 } = Astro.props;
+---
+
+<div
+  class="bg-offwhite/5 backdrop-blur-sm border border-offwhite/10 rounded-2xl p-8 hover:bg-offwhite/10 transition-all duration-300"
+  data-scroll-reveal
+  data-delay={delay.toString()}
+>
+  <div class="flex items-center gap-4 mb-5">
+    <div
+      class="w-14 h-14 rounded-xl flex items-center justify-center text-offwhite font-bold text-xl font-body shrink-0"
+      style={`background-color: ${color}`}
+    >
+      {number}
+    </div>
+    <h3 class="font-heading text-xl text-offwhite">{title}</h3>
+  </div>
+  <p class="text-offwhite/70 leading-relaxed font-body text-sm">{desc}</p>
+</div>

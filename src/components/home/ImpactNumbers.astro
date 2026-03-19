@@ -1,0 +1,39 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import ImpactCounter from './ImpactCounter.astro';
+import { useTranslations } from '@/i18n/utils';
+import { getLangFromUrl } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url) || 'id';
+const t = useTranslations(lang);
+
+const stats = [
+  { value: 27, suffix: '%', label: t('impact.methane'), icon: '🌿' },
+  { value: 35, suffix: '%', label: t('impact.productivity'), icon: '📈' },
+  { value: 40, suffix: '%', label: t('impact.feedcost'), icon: '🌾' },
+  { value: 500, suffix: '+', label: t('impact.farmers'), icon: '🤝' },
+];
+---
+
+<section class="py-20 lg:py-28 bg-neutral" id="impact">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <SectionHeading title={t('impact.title')} subtitle={t('impact.subtitle')} />
+
+    <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {stats.map((stat, i) => (
+        <ImpactCounter
+          value={stat.value}
+          suffix={stat.suffix}
+          label={stat.label}
+          icon={stat.icon}
+          delay={i * 150}
+        />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import ProductCard from './ProductCard.astro';
+import { useTranslations } from '@/i18n/utils';
+import { getLangFromUrl } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url) || 'id';
+const t = useTranslations(lang);
+
+const products = [
+  {
+    slug: 'kemitraan-titip-ternak',
+    name: lang === 'en' ? 'Livestock Partnership Program' : 'Kemitraan Titip Ternak',
+    tagline: lang === 'en' ? 'Invest in Livestock, Share the Returns' : 'Investasi Ternak, Hasil Bersama',
+    image: '/images/products/kemitraan-titip-ternak.jpg',
+    color: 'from-primary/80 to-secondary/90',
+  },
+  {
+    slug: 'bisa-qurban',
+    name: 'Bisa Qurban',
+    tagline: lang === 'en' ? 'Fulfill Your Intention, Spread the Benefit' : 'Wujudkan Niat, Tebar Manfaat',
+    image: '/images/products/bisa-qurban.jpg',
+    color: 'from-warm/80 to-primary/90',
+  },
+  {
+    slug: 'mitra-bhakti-aqiqah',
+    name: 'Mitra Bhakti Aqiqah',
+    tagline: lang === 'en' ? 'From the Heart for Your Little One' : 'Dari Hati untuk Buah Hati',
+    image: '/images/products/mitra-bhakti-aqiqah.jpg',
+    color: 'from-accent/80 to-dark/90',
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-offwhite" id="products">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <SectionHeading title={t('products.title')} subtitle={t('products.subtitle')} />
+
+    <div class="mt-16 grid md:grid-cols-3 gap-8">
+      {products.map((product, i) => (
+        <ProductCard
+          slug={product.slug}
+          name={product.name}
+          tagline={product.tagline}
+          image={product.image}
+          color={product.color}
+          lang={lang}
+          delay={i * 150}
+        />
+      ))}
+    </div>
+  </div>
+</section>

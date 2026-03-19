@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@theme {
+  --color-primary: #8B6914;
+  --color-primary-light: #A47D1A;
+  --color-primary-dark: #6E5310;
+  --color-secondary: #2C1810;
+  --color-accent: #4A7C59;
+  --color-accent-light: #5A9A6E;
+  --color-warm: #D4A853;
+  --color-neutral: #F5F0E8;
+  --color-dark: #1A1A1A;
+  --color-offwhite: #FEFCF9;
+
+  --font-heading: "DM Serif Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-secondary);
+  background-color: var(--color-offwhite);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+/* ScrollReveal initial state */
+[data-scroll-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-scroll-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-scroll-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

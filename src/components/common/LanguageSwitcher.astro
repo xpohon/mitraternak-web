@@ -1,0 +1,40 @@
+---
+import { type Lang } from '@/i18n/ui';
+import { getLocalizedPath } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+
+const idPath = getLocalizedPath(currentPath, 'id');
+const enPath = getLocalizedPath(currentPath, 'en');
+---
+
+<div class="flex items-center gap-1 font-body text-sm">
+  <a
+    href={idPath}
+    class:list={[
+      'px-1.5 py-0.5 rounded transition-colors',
+      lang === 'id'
+        ? 'font-bold text-primary'
+        : 'text-secondary/60 hover:text-primary',
+    ]}
+  >
+    ID
+  </a>
+  <span class="text-secondary/30">|</span>
+  <a
+    href={enPath}
+    class:list={[
+      'px-1.5 py-0.5 rounded transition-colors',
+      lang === 'en'
+        ? 'font-bold text-primary'
+        : 'text-secondary/60 hover:text-primary',
+    ]}
+  >
+    EN
+  </a>
+</div>

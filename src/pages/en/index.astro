@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import ImpactNumbers from '@/components/home/ImpactNumbers.astro';
+import AboutTeaser from '@/components/home/AboutTeaser.astro';
+import ValueChainFlow from '@/components/home/ValueChainFlow.astro';
+import ProductShowcase from '@/components/home/ProductShowcase.astro';
+import ImpactSDGs from '@/components/home/ImpactSDGs.astro';
+import MediaCarousel from '@/components/home/MediaCarousel.astro';
+import CTASection from '@/components/home/CTASection.astro';
+
+const lang = 'en';
+---
+
+<BaseLayout
+  title="Mitra Ternak - Sustainable Farming Business Solutions"
+  description="PT Mitra Ternak Berkelanjutan - An integrated sheep farming ecosystem empowering smallholder farmers, reducing emissions, and creating value from upstream to downstream."
+  lang={lang}
+>
+  <Hero lang={lang} />
+  <ImpactNumbers lang={lang} />
+  <AboutTeaser lang={lang} />
+  <ValueChainFlow lang={lang} />
+  <ProductShowcase lang={lang} />
+  <ImpactSDGs lang={lang} />
+  <MediaCarousel lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>
+
+<script>
+  import { initScrollReveal } from '@/utils/animations';
+  initScrollReveal();
+</script>

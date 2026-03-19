@@ -1,0 +1,57 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import SDGItem from './SDGItem.astro';
+import { useTranslations } from '@/i18n/utils';
+import { getLangFromUrl } from '@/i18n/utils';
+import type { Lang } from '@/i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url) || 'id';
+const t = useTranslations(lang);
+
+const sdgs = [
+  {
+    number: 1,
+    color: '#E5243B',
+    title: t('sdgs.1.title'),
+    desc: t('sdgs.1.desc'),
+  },
+  {
+    number: 9,
+    color: '#FD6925',
+    title: t('sdgs.9.title'),
+    desc: t('sdgs.9.desc'),
+  },
+  {
+    number: 17,
+    color: '#19486A',
+    title: t('sdgs.17.title'),
+    desc: t('sdgs.17.desc'),
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-dark" id="sdgs">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <SectionHeading
+      title={t('sdgs.title')}
+      subtitle={t('sdgs.subtitle')}
+      dark={true}
+    />
+
+    <div class="mt-16 grid md:grid-cols-3 gap-8">
+      {sdgs.map((sdg, i) => (
+        <SDGItem
+          number={sdg.number}
+          color={sdg.color}
+          title={sdg.title}
+          desc={sdg.desc}
+          delay={i * 200}
+        />
+      ))}
+    </div>
+  </div>
+</section>
