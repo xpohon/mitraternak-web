@@ -36,14 +36,43 @@ export function getStaticPaths() {
       props: {
         product: {
           name: 'Mitra Bhakti Aqiqah',
-          tagline: 'Layanan aqiqah terpercaya dari peternak lokal',
-          description: 'Mitra Bhakti Aqiqah adalah layanan aqiqah terintegrasi yang menghubungkan keluarga dengan peternak lokal. Kami memastikan setiap domba memenuhi syarat aqiqah dengan kualitas terbaik dan harga yang transparan.',
+          tagline: 'Aqiqah Praktis Tanpa Ribet — Mulai dari 2 Jutaan',
+          description: 'Mitra Bhakti Aqiqah merupakan layanan aqiqah dengan domba berkualitas yang diternak sendiri dan dikelola oleh tenaga profesional. Setiap domba dirawat oleh tim berpengalaman, dipantau kesehatannya setiap hari, serta diberi pakan bernutrisi. Seluruh proses mulai dari pemilihan hewan, penyembelihan sesuai syariat, pengolahan menu, hingga pengantaran dilakukan dengan standar kebersihan dan profesionalitas tinggi.',
           features: [
-            'Domba pilihan sesuai syarat aqiqah',
-            'Paket lengkap termasuk penyembelihan & distribusi',
-            'Dokumentasi lengkap untuk keluarga',
-            'Kerjasama dengan ustadz lokal',
-            'Mendukung ekonomi peternak lokal',
+            'Domba dari peternakan sendiri, dipantau kesehatannya setiap hari',
+            'Penyembelihan sesuai syariat Islam',
+            'Olahan masakan higienis dan siap santap',
+            'Sertifikat aqiqah resmi',
+            'Dokumentasi foto dan video proses penyembelihan',
+            'Pengemasan rapi dan pengantaran ke alamat',
+            'Didukung peternak lokal dan tim profesional',
+            'Harga terjangkau mulai dari 2 jutaan',
+          ],
+          packages: [
+            {
+              name: 'Paket Anak Perempuan',
+              desc: '1 ekor domba',
+              perks: ['Penyembelihan sesuai syariat Islam', 'Olahan masakan higienis & siap santap', 'Sertifikat aqiqah'],
+              roi: '2 Jt',
+            },
+            {
+              name: 'Paket Anak Laki-laki',
+              desc: '2 ekor domba',
+              perks: ['Penyembelihan sesuai syariat Islam', 'Olahan masakan lengkap & higienis', 'Sertifikat aqiqah', 'Dokumentasi foto', 'Pengemasan rapi'],
+              roi: '3 Jt',
+            },
+            {
+              name: 'Paket Premium',
+              desc: 'Domba pilihan kualitas premium',
+              perks: ['Penyembelihan sesuai syariat Islam', 'Olahan menu lengkap & siap santap', 'Sertifikat aqiqah', 'Dokumentasi foto & video', 'Gratis ongkir'],
+              roi: '5.5 Jt',
+            },
+          ],
+          steps: [
+            { title: 'Pilih Paket', desc: 'Pilih paket aqiqah sesuai kebutuhan Anda' },
+            { title: 'Konfirmasi Pesanan', desc: 'Tim kami bantu proses dan jadwal aqiqah' },
+            { title: 'Proses Aqiqah', desc: 'Dilaksanakan sesuai syariat dan terdokumentasi' },
+            { title: 'Pengantaran', desc: 'Pesanan siap diantar ke alamat Anda' },
           ],
         },
       },
@@ -72,19 +101,19 @@ export function getStaticPaths() {
               name: 'Paket Eksekutif',
               desc: '3 ekor domba betina indukan',
               perks: ['Gratis jasa kawin pejantan super', 'Gratis biaya pakan 4 bulan'],
-              roi: '42%',
+              roi: 'ROI 42%',
             },
             {
               name: 'Paket Platinum',
               desc: '9 ekor domba betina indukan',
               perks: ['Gratis jasa kawin pejantan super', 'Gratis biaya pakan 5 bulan'],
-              roi: '49%',
+              roi: 'ROI 49%',
             },
             {
               name: 'Paket Juragan',
               desc: '15 ekor domba betina indukan',
               perks: ['Gratis jasa kawin pejantan super', 'Gratis biaya pakan 6 bulan'],
-              roi: '61%',
+              roi: 'ROI 61%',
             },
           ],
           steps: [
@@ -161,8 +190,8 @@ const { product } = Astro.props;
     <section class="bg-neutral py-16 md:py-24">
       <div class="mx-auto max-w-6xl px-4">
         <ScrollReveal>
-          <h2 class="mb-4 text-center font-heading text-3xl text-secondary">Paket Kemitraan</h2>
-          <p class="mb-12 text-center font-body text-secondary/70">Beli sekali, panennya hingga 3 kali</p>
+          <h2 class="mb-4 text-center font-heading text-3xl text-secondary">Pilihan Paket</h2>
+          <p class="mb-12 text-center font-body text-secondary/70">Pilih paket yang sesuai kebutuhan Anda</p>
         </ScrollReveal>
         <div class="grid gap-8 md:grid-cols-3">
           {product.packages.map((pkg: any, i: number) => (
@@ -174,7 +203,7 @@ const { product } = Astro.props;
                 <h3 class="font-heading text-2xl">{pkg.name}</h3>
                 <p class={`mt-2 text-sm font-body ${i === 2 ? 'text-offwhite/70' : 'text-secondary/60'}`}>{pkg.desc}</p>
                 <div class="my-6">
-                  <span class="text-4xl font-bold font-body text-primary">ROI {pkg.roi}</span>
+                  <span class="text-4xl font-bold font-body text-primary">{pkg.roi}</span>
                 </div>
                 <ul class="space-y-3">
                   {pkg.perks.map((perk: string) => (
