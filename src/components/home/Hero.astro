@@ -13,11 +13,10 @@ const t = useTranslations(lang);
 ---
 
 <section class="relative h-screen min-h-[600px] flex items-center overflow-hidden" id="hero">
-  <!-- Background placeholder -->
-  <div class="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/90 to-dark">
-    <!-- Placeholder for real image - replace src with actual drone/farm photo -->
-    <div class="absolute inset-0 opacity-40 bg-[url('/images/hero-placeholder.jpg')] bg-cover bg-center"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-dark/70 via-dark/50 to-transparent"></div>
+  <!-- Background -->
+  <div class="absolute inset-0">
+    <img src="/images/hero/hero-bg.webp" alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(26,26,26,0.88) 0%, rgba(26,26,26,0.7) 50%, rgba(26,26,26,0.4) 100%);"></div>
   </div>
 
   <!-- Content -->
