@@ -136,8 +136,42 @@ const quickLinks = [
       </div>
     </div>
 
+    <!-- App Download Badges -->
+    <div class="mt-10 flex flex-col items-center gap-4">
+      <p class="font-body text-sm text-neutral/50">Download Aplikasi</p>
+      <div class="flex items-center gap-3">
+        <!-- Google Play Badge -->
+        <a href="#" class="inline-block transition-opacity hover:opacity-80" aria-label="Download di Google Play">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 155 46" class="h-11 w-auto">
+            <rect width="155" height="46" rx="5" fill="#fff"/>
+            <path d="M8.3 22.6L20 15l3.1 1.8-11.6 6.7z" fill="#36a852"/>
+            <path d="M8.3 22.6L20 30.3l3.1-1.8-11.6-6.7z" fill="#d63830"/>
+            <path d="M23.1 16.8l3-1.7c.5-.3 1.1-.3 1.5 0l.1.1-4.6 2.6-3.1-1.8z" fill="#f9bc15"/>
+            <path d="M23.1 28.5l3 1.7c.5.3 1.1.3 1.5 0l.1-.1-4.6-2.6-3.1 1.8z" fill="#5c85de"/>
+            <path d="M8.3 22.6v-.2a.7.7 0 01.4-.6L20 15l3.1 1.8L11.5 23z" fill="#36a852"/>
+            <path d="M8.3 22.6v.2a.7.7 0 00.4.6L20 30.3l3.1-1.8-11.6-6.7z" fill="#d63830"/>
+            <text x="33" y="17" font-family="Arial,sans-serif" font-size="7" fill="#888" letter-spacing=".3">GET IT ON</text>
+            <text x="33" y="31" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#333">Google Play</text>
+          </svg>
+        </a>
+        <!-- App Store Badge -->
+        <a href="#" class="inline-block transition-opacity hover:opacity-80" aria-label="Download di App Store">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 155 46" class="h-11 w-auto">
+            <rect width="155" height="46" rx="5" fill="#fff"/>
+            <g fill="#333">
+              <path d="M22.7 22.5c0-2.2 1.2-3.5 2.6-4.6a3.6 3.6 0 00-2.8-1.5c-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7a3.8 3.8 0 00-3.2 2c-1.4 2.4-.4 5.9 1 7.8.7 1 1.4 2 2.5 2s1.4-.6 2.6-.6 1.6.6 2.6.6 1.7-1 2.4-1.9a8.5 8.5 0 001.1-2.2 3.4 3.4 0 01-2.2-3.6z"/>
+              <path d="M20.7 15a3.4 3.4 0 00.8-2.5 3.5 3.5 0 00-2.3 1.2 3.3 3.3 0 00-.8 2.4c.9.1 1.7-.4 2.3-1.1z"/>
+            </g>
+            <text x="33" y="16" font-family="Arial,sans-serif" font-size="7" fill="#888" letter-spacing=".3">Download on the</text>
+            <text x="33" y="31" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#333">App Store</text>
+          </svg>
+        </a>
+      </div>
+      <p class="font-body text-xs text-neutral/40 italic">Segera hadir</p>
+    </div>
+
     <!-- Copyright -->
-    <div class="mt-12 border-t border-offwhite/10 pt-8 text-center">
+    <div class="mt-8 border-t border-offwhite/10 pt-8 text-center">
       <p class="font-body text-sm text-neutral/50">
         {t('footer.copyright')}
       </p>
