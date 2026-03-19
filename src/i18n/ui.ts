@@ -13,6 +13,7 @@ export const ui = {
     'nav.home': 'Beranda',
     'nav.about': 'Tentang',
     'nav.activities': 'Kegiatan Kami',
+    'nav.blog': 'Blog',
     'nav.contact': 'Hubungi Kami',
     'nav.cta': 'Mulai Bermitra',
 
@@ -123,6 +124,7 @@ export const ui = {
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.activities': 'Our Activities',
+    'nav.blog': 'Blog',
     'nav.contact': 'Contact Us',
     'nav.cta': 'Partner With Us',
 
