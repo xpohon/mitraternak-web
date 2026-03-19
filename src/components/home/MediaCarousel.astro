@@ -125,18 +125,21 @@ const mediaItems = [
   const dots = document.querySelectorAll('.carousel-dot');
 
   if (carousel && dots.length) {
-    // Auto-scroll
-    let currentIndex = 0;
-    const autoPlay = setInterval(() => {
-      currentIndex = (currentIndex + 1) % dots.length;
-      const cards = carousel.children;
-      if (cards[currentIndex]) {
-        (cards[currentIndex] as HTMLElement).scrollIntoView({
+    function scrollToCard(index: number) {
+      const card = carousel!.children[index] as HTMLElement;
+      if (card) {
+        carousel!.scrollTo({
+          left: card.offsetLeft - carousel!.offsetLeft,
           behavior: 'smooth',
-          block: 'nearest',
-          inline: 'start',
         });
       }
+    }
+
+    // Auto-scroll
+    let currentIndex = 0;
+    let autoPlay: ReturnType<typeof setInterval> | null = setInterval(() => {
+      currentIndex = (currentIndex + 1) % dots.length;
+      scrollToCard(currentIndex);
       updateDots(currentIndex);
     }, 4000);
 
@@ -144,20 +147,15 @@ const mediaItems = [
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
         currentIndex = i;
-        const cards = carousel.children;
-        if (cards[i]) {
-          (cards[i] as HTMLElement).scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start',
-          });
-        }
+        scrollToCard(i);
         updateDots(i);
       });
     });
 
     // Pause on hover
-    carousel.addEventListener('mouseenter', () => clearInterval(autoPlay));
+    carousel.addEventListener('mouseenter', () => {
+      if (autoPlay) { clearInterval(autoPlay); autoPlay = null; }
+    });
 
     function updateDots(active: number) {
       dots.forEach((d, i) => {
